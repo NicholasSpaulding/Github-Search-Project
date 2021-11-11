@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{CF74AB3B-CD1E-48CC-ABBA-14C506E24868}|Default">
+  <MonoDevelop.Ide.ItemProperties.Project3 PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Project3" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../../../Project4/Project4/Models/TodoDbContext.cs" line="10" column="29" endLine="10" endColumn="60" offsetX="-1" offsetY="-1" expression="DbContextOptions&lt;TodoDbContext&gt;" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

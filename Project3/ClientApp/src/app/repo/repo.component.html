@@ -1,0 +1,67 @@
+<table class="table table-striped table-dark">
+  <caption>
+    Repo information
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Repo name</th>
+      <th scope="col">Github page</th>
+      <th scope="col">Description</th>
+      <th scope="col">Clone repo</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="repo">
+    <tr>
+      <th scope="row">
+        <p *ngIf="repo.name" class="text-info">{{ repo.name }}</p>
+      </th>
+      <td>
+        <a
+          *ngIf="repo.html_url"
+          href="{{ repo.html_url }}"
+          class="text-warning"
+          >{{ repo.clone_url }}</a
+        >
+      </td>
+      <td>
+        <p *ngIf="repo.description">{{ repo.description }}</p>
+      </td>
+      <td>
+        <a
+          *ngIf="repo.clone_url"
+          href="{{ repo.clone_url }}"
+          class="text-warning"
+          >{{ repo.clone_url }}</a
+        >
+      </td>
+    </tr>
+    <tr></tr>
+  </tbody>
+</table>
+<h2>Repos</h2>
+<table class="table table-striped table-dark">
+  <caption>
+    Repo information
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Stargazers</th>
+      <th scope="col">Watchers</th>
+      <th scope="col">Forks</th>
+      <th scope="col">Open issues</th>
+      <th scope="col">Language</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="repo">
+    <tr>
+      <th scope="row">
+        {{ repo.stargazers_count }}
+      </th>
+      <td>{{ repo.watchers_count }}</td>
+      <td>{{ repo.open_issues }}</td>
+      <td>{{ repo.forks }}</td>
+      <td>{{ repo.language }}</td>
+    </tr>
+    <tr></tr>
+  </tbody>
+</table>

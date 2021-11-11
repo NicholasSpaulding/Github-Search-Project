@@ -1,0 +1,10 @@
+<div *ngIf="githubUser" class="card" style="width: 18rem">
+  <img [src]="githubUser.avatar_url" class="card-img-top" alt="avatar image" />
+  <div class="card-body">
+    <h5 class="card-title">{{ githubUser.login }}</h5>
+    <div class="card-text">Login id: {{ githubUser.id }}</div>
+    <a class="btn btn-primary" [routerLink]="['github-user/', githubUser.login]"
+      >More Details</a
+    >
+  </div>
+</div>

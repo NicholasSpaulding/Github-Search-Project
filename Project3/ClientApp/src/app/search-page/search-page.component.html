@@ -1,0 +1,124 @@
+<h3>Search Github</h3>
+<form
+  class="form-inline"
+  [formGroup]="searchForm"
+  (ngSubmit)="searchGithubUsers()"
+>
+  <label class="sr-only" for="inlineFormInputName2">Query</label>
+  <input
+    type="text"
+    class="form-control mb-2 mr-sm-2"
+    id="inlineFormInputName2"
+    placeholder="Search"
+    formControlName="query"
+  />
+
+  <button type="submit" class="btn btn-primary mb-2">Search Users</button>
+</form>
+<form
+  class="form-inline"
+  [formGroup]="searchForm"
+  (ngSubmit)="searchGithubRepos()"
+>
+  <label class="sr-only" for="inlineFormInputName2">Query</label>
+  <input
+    type="text"
+    class="form-control mb-2 mr-sm-2"
+    id="inlineFormInputName2"
+    placeholder="Search"
+    formControlName="query"
+  />
+
+  <button type="submit" class="btn btn-primary mb-2">Search Repos</button>
+</form>
+<div *ngIf="error" class="alert alert-danger" role="alert">
+  {{ error }}
+</div>
+<div>
+  <app-loading [loading]="loading"></app-loading>
+</div>
+
+<!-- user cards -->
+<div *ngIf="result">
+  <div class="card-columns">
+    <div *ngFor="let user of result.items">
+      <app-github-user [githubUser]="user"></app-github-user>
+    </div>
+  </div>
+  <!-- pagination for users -->
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <fa-icon
+        [icon]="faChevronLeft"
+        (click)="prevUser()"
+        *ngIf="prevPageExists"
+      >
+      </fa-icon>
+    </div>
+    <div class="col-2">
+      <fa-icon
+        [icon]="faChevronRight"
+        (click)="nextUser()"
+        *ngIf="nextPageExists"
+      ></fa-icon>
+    </div>
+  </div>
+</div>
+
+<!-- repo table -->
+<div *ngIf="repos">
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Photo</th>
+        <th scope="col">Issues</th>
+        <th scope="col">Stargazers</th>
+        <th scope="col">Watchers</th>
+        <th scope="col">Language</th>
+        <th scope="col">More Details</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let repo of repos.items">
+      <tr>
+        <th scope="row">
+          <img
+            [src]="repo.owner.avatar_url"
+            class="img-thumbnail"
+            style="width: 10rem"
+            alt="repo user image"
+          />
+        </th>
+        <td>{{ repo.open_issues }}</td>
+        <td>{{ repo.stargazers_count }}</td>
+        <td>{{ repo.watchers_count }}</td>
+        <td>{{ repo.language }}</td>
+        <td>
+          <a
+            class="btn btn-outline-info"
+            [routerLink]="['repo-detail/', repo.owner.login, repo.name]"
+            >Details</a
+          >
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+  <!-- pagination for repos -->
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <fa-icon
+        [icon]="faChevronLeft"
+        (click)="prev()"
+        *ngIf="prevRepoPageExists"
+      >
+      </fa-icon>
+    </div>
+    <div class="col-2">
+      <fa-icon
+        [icon]="faChevronRight"
+        (click)="next()"
+        *ngIf="nextRepoPageExists"
+      ></fa-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div *ngIf="githubUser" class="card" style="width: 18rem; margin-bottom: 3rem">
+  <img [src]="githubUser.avatar_url" class="card-img-top" alt="avatar image" />
+  <div class="card-body">
+    <h5 class="card-title">{{ githubUser.login }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Login id: {{ githubUser.id }}</h6>
+    <div class="card-text" *ngIf="githubUser.location === null">
+      Location: Not provided
+    </div>
+    <div class="card-text" *ngIf="githubUser.location != null">
+      Location: {{ githubUser.location }}
+    </div>
+    <div class="card-text" *ngIf="!githubUser.blog">Blog: Not provided</div>
+    <div *ngIf="githubUser.blog">
+      Blog:
+      <a href="{{ githubUser.html_url }}" class="card-text">
+        {{ githubUser.blog }}
+      </a>
+    </div>
+    <div style="margin-top: 1rem">
+      <a href="{{ githubUser.html_url }}" class="btn btn-outline-primary"
+        >Github Profile</a
+      >
+    </div>
+  </div>
+</div>
+
+<div *ngIf="repos">
+  <table class="table table-striped table-dark">
+    <caption>
+      List of repos
+    </caption>
+
+    <thead>
+      <tr>
+        <th scope="col">Repo Name</th>
+        <th scope="col">Stargazers</th>
+        <th scope="col">Issues</th>
+        <th scope="col">Language</th>
+        <th scope="col">More Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let repo of repos">
+        <td>{{ repo.name }}</td>
+        <td>{{ repo.stargazers_count }}</td>
+        <td>{{ repo.open_issues }}</td>
+        <td>{{ repo.language }}</td>
+        <td>
+          <a
+            class="btn btn-outline-info"
+            [routerLink]="['repo-detail/', repo.owner.login, repo.name]"
+            >Details</a
+          >
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="githubUserFollowers">
+  <table class="table table-striped table-dark">
+    <caption>
+      List of followers
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Photo</th>
+        <th scope="col">Login id</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let follower of githubUserFollowers">
+        <td>
+          <img
+            style="width: 18rem"
+            [src]="follower.avatar_url"
+            alt="avatar image"
+          />
+        </td>
+        <td>{{ follower.id }}</td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+</div>

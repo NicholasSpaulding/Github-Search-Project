@@ -1,0 +1,69 @@
+<h2>Repos</h2>
+<app-repo [repo]="repo"></app-repo>
+<h2>Commits</h2>
+<div *ngIf="commit">
+  <table class="table table-striped table-dark">
+    <caption>
+      Commit information
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Author</th>
+        <th scope="col">Commit</th>
+        <th scope="col">Message</th>
+        <th scope="col">Comment count</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let index of commit; let i = index">
+      <tr>
+        <td *ngIf="i < 5">
+          {{ index.author.login }}
+        </td>
+        <td *ngIf="i < 5 && index.commit.url !== null">
+          <a href="{{ index.commit.url }}" class="text-warning">Commit Link</a>
+          <p *ngIf="i < 5 && index.commit.url === null">No commits</p>
+        </td>
+        <td *ngIf="i < 5 && index.commit.message !== null">
+          <p *ngIf="i < 5 && index.commit.message !== null">
+            {{ index.commit.message }}
+          </p>
+          <p *ngIf="i < 5 && index.commit.message === null">
+            No commit message
+          </p>
+        </td>
+        <td *ngIf="i < 5 && index.commit.comment_count !== null">
+          {{ index.commit.comment_count }}
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+</div>
+<h2>Issues</h2>
+<div *ngIf="issue">
+  <table class="table table-striped table-dark">
+    <caption>
+      Issue information
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Issue title</th>
+        <th scope="col">Created date</th>
+        <th scope="col">Link to issue</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let index of issue; let i = index">
+      <tr>
+        <td *ngIf="i < 5">
+          {{ index.title }}
+        </td>
+        <td *ngIf="i < 5">{{ index.created_at }}</td>
+
+        <td *ngIf="i < 5">
+          <a href="{{ index.url }}" class="text-warning">{{ index.url }}</a>
+        </td>
+      </tr>
+      <tr></tr>
+    </tbody>
+  </table>
+</div>
